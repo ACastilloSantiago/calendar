@@ -141,7 +141,7 @@ export const CalendarModal = () => {
               placeholder="Título del evento"
               name="title"
               autoComplete="off"
-              value={formValues.title}
+              value={formValues?.title}
               onChange={onInputChange}
             />
             <small id="emailHelp" className="form-text text-muted">
