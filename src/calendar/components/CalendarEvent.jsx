@@ -3,7 +3,7 @@ export const CalendarEvent = ({ event = {} }) => {
   //   console.log(event);
   return (
     <>
-      <strong>{title}</strong>
+      <strong>{title || ''}</strong>
       <span> - {user.name}</span>
     </>
   );
