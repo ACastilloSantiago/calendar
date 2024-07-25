@@ -42,8 +42,8 @@ export const CalendarModal = () => {
   const titleClass = useMemo(() => {
     if (!formSubmitted) return '';
 
-    return formValues.title.length > 0 ? '' : 'is-invalid';
-  }, [formValues.title, formSubmitted]);
+    return formValues?.title.length > 0 ? '' : 'is-invalid';
+  }, [formValues?.title, formSubmitted]);
 
   const onInputChange = ({ target }) => {
     setFormValues({
