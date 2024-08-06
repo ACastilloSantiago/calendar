@@ -9,20 +9,26 @@ import {
   FabDelete,
 } from '../';
 import { getMessagesES, localizer } from '../../helpers/';
-import { useState } from 'react';
-import { useUiStore } from '../../hooks';
+import { useEffect, useState } from 'react';
+import { useAuthStore, useUiStore } from '../../hooks';
 import { useCalendarStore } from '../../hooks';
 
 export const CalendarPage = () => {
   const { openDateModal } = useUiStore();
-  const { events, setActiveEvent } = useCalendarStore();
+  const { user } = useAuthStore();
+  const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
   const [lastView, setLastView] = useState(
     localStorage.getItem('lastView') || 'week'
   );
 
   const eventStyleGetter = (event, start, end, isSelected) => {
+    const isMyEvent =
+      user.uid === event.user._id || user.uid === event.user.uid;
+
+    console.log(event);
+
     const style = {
-      backgroundColor: '#347CF7',
+      backgroundColor: isMyEvent ? '#347CF7' : '#465660',
       borderRadius: '0px',
       opacity: '0.8',
       color: 'white',
@@ -45,6 +51,10 @@ export const CalendarPage = () => {
     localStorage.setItem('lastView', event);
     console.log({ viewChange: event });
   };
+
+  useEffect(() => {
+    startLoadingEvents();
+  }, []);
 
   return (
     <>
