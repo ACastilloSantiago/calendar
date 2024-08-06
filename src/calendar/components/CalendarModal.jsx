@@ -53,7 +53,7 @@ export const CalendarModal = () => {
   };
 
   useEffect(() => {
-    console.log({ activeEvent });
+    // console.log({ activeEvent });
     if (activeEvent !== null) {
       setFormValues({ ...activeEvent });
     }
@@ -75,17 +75,14 @@ export const CalendarModal = () => {
     setoFrmSubmitted(true);
     const difference = differenceInSeconds(formValues.end, formValues.start);
 
-    console.log({ difference });
 
     if (isNaN(difference) || difference <= 0) {
       Swal.fire('Fechas incorrectas', 'Revisar las fechas ingresadas', 'error');
-      // console.log('Error en fechas');
       return;
     }
 
     if (formValues?.title.length <= 0) return;
 
-    // console.log('Submit');
     await startSavingEvent(formValues);
     closeDateModal();
     setoFrmSubmitted(false)

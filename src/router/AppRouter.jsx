@@ -18,7 +18,6 @@ export const AppRouter = () => {
     return <h3>Cargando...</h3>;
   }
 
-  console.log({ status });
 
   return (
     <Routes>
