@@ -26,7 +26,6 @@ export const useAuthStore = () => {
         dispatch(onClearErrorMessage());
       }, 10);
 
-      console.log(error);
     }
   };
 
@@ -39,7 +38,6 @@ export const useAuthStore = () => {
         password,
       });
 
-      console.log({ data });
 
       // * Guardamos la fecha en el que el token se crea.
       localStorage.setItem('token', data.token);
@@ -53,7 +51,6 @@ export const useAuthStore = () => {
       setTimeout(() => {
         dispatch(onClearErrorMessage());
       }, 10);
-      console.log({ error });
     }
   };
 
