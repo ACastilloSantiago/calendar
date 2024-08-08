@@ -1,5 +1,8 @@
 .login-container{
-    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 .login-form-1{
     border-radius: 5px;
