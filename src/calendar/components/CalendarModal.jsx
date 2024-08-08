@@ -5,13 +5,17 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 import Modal from 'react-modal';
-Modal.setAppElement('#root');
+
+if (getEnvVariables().VITE_MODE !== 'test') {
+  Modal.setAppElement('#root');
+}
 
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { es } from 'date-fns/locale/es';
 import { useCalendarStore, useUiStore } from '../../hooks';
+import { getEnvVariables } from '../../helpers';
 
 registerLocale('es', es);
 
@@ -75,7 +79,6 @@ export const CalendarModal = () => {
     setoFrmSubmitted(true);
     const difference = differenceInSeconds(formValues.end, formValues.start);
 
-
     if (isNaN(difference) || difference <= 0) {
       Swal.fire('Fechas incorrectas', 'Revisar las fechas ingresadas', 'error');
       return;
@@ -85,7 +88,7 @@ export const CalendarModal = () => {
 
     await startSavingEvent(formValues);
     closeDateModal();
-    setoFrmSubmitted(false)
+    setoFrmSubmitted(false);
   };
 
   return (
